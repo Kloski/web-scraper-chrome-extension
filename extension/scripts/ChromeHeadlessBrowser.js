@@ -11,7 +11,7 @@ class ChromeHeadlessBrowser {
     // constructors cannot handle asynchronous
     this.browserPromise = puppeteer.launch({
       headless: true,
-      args: process.env.PUPPETEER_NO_SANDBOX ? ['--no-sandbox'] : [] 
+      args: options.args
     })
     this.pagePromise = this.browserPromise.then(function (browser) {
       return browser.newPage()

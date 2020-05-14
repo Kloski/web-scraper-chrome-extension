@@ -55,9 +55,9 @@ class ChromeHeadlessBrowser {
       // Maybe we don't need a context each time?
       const isolatedWorldInfo = await page._client.send('Page.createIsolatedWorld', {frameId: mainFrame._id, worldName: 'web-scraper-headless'})
       const executionContextId = isolatedWorldInfo.executionContextId
-      const JsHandleFactory = page._frameManager.createJSHandle.bind(page._frameManager, executionContextId)
+      // const JsHandleFactory = page._frameManager.createJSHandle.bind(page._frameManager, executionContextId) // I do not know how to fix this, but scraping is working without this line
 
-      const executionContext = new ExecutionContext(page._client, {id: executionContextId}, JsHandleFactory)
+      const executionContext = new ExecutionContext(page._client, {id: executionContextId}/*, JsHandleFactory*/)
 
       const bundle = await contentSraperBundler.getBundle()
       await executionContext.evaluate(bundle)

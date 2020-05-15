@@ -44,7 +44,7 @@ function scrape (sitemapInfo, options = {}) {
         BrowserConstructor = JSDOMBrowser
     }
     const browser = new BrowserConstructor({
-      pageLoadDelay: options.pageLoadDelay || 2000
+      pageLoadDelay: options.pageLoadDelay || 2000, browserArgs: options.args
     })
     const s = new Scraper({
       queue: q,
